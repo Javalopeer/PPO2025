@@ -9,10 +9,6 @@ public class GrupoCursoController {
 
     private final GrupoCursoDAO dao = new GrupoCursoDAO();
 
-    public boolean asignar(int grupoId, int cursoId) {
-        return dao.insertar(new GrupoCurso(grupoId, cursoId));
-    }
-
     public List<String> listarGrupos() {
         return dao.listarGruposConNombres();
     }
@@ -23,5 +19,13 @@ public class GrupoCursoController {
 
     public List<String> listarAsignacionesConDetalle() {
         return dao.listarAsignacionesConDetalle();
+    }
+
+    public boolean asignar(int grupoId, int cursoId) {
+        if (dao.yaExisteAsignacion(grupoId, cursoId)) {
+            System.out.println("⚠️ Ya existe esta asignación.");
+            return false;
+        }
+        return dao.insertar(new GrupoCurso(grupoId, cursoId));
     }
 }

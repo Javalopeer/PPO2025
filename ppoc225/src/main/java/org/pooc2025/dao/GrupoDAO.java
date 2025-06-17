@@ -19,9 +19,9 @@ public class GrupoDAO {
 
             while (rs.next()) {
                 Grupo items = new Grupo(
-                        rs.getString("descripcion"),
                         rs.getString("estado"),
                         rs.getString("nombre"),
+                        rs.getString("descripcion"),
                         rs.getInt("id")
                 );
                 lista.add(items);

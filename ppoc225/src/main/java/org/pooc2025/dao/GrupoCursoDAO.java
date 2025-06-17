@@ -73,4 +73,21 @@ public class GrupoCursoDAO {
         }
         return lista;
     }
+    public boolean yaExisteAsignacion(int grupoId, int cursoId) {
+        String sql = "SELECT COUNT(*) FROM grupo_curso WHERE grupo_id = ? AND curso_id = ?";
+        try (Connection con = Conexion.obtenerConexion();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, grupoId);
+            stmt.setInt(2, cursoId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error al verificar duplicados: " + e.getMessage());
+        }
+        return false;
+    }
+
 }
+

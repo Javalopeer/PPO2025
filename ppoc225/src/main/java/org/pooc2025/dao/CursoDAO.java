@@ -62,13 +62,29 @@ public class CursoDAO {
     }
 
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM curso WHERE id=?";
-        try (Connection con = Conexion.obtenerConexion();
-             PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            return stmt.executeUpdate() > 0;
+        String sql1 = "DELETE FROM grupo_curso WHERE curso_id=?";
+        String sql2 = "DELETE FROM curso WHERE id=?";
+        try (Connection con = Conexion.obtenerConexion()) {
+            con.setAutoCommit(false);
+
+            try (PreparedStatement stmt1 = con.prepareStatement(sql1);
+                 PreparedStatement stmt2 = con.prepareStatement(sql2)) {
+
+                stmt1.setInt(1, id);
+                stmt1.executeUpdate();
+
+                stmt2.setInt(1, id);
+                stmt2.executeUpdate();
+
+                con.commit();
+                return true;
+            } catch (SQLException e) {
+                con.rollback();
+                System.out.println("❌ Error al eliminar curso: " + e.getMessage());
+                return false;
+            }
         } catch (SQLException e) {
-            System.out.println("❌ Error al eliminar curso: " + e.getMessage());
+            System.out.println("❌ Error de conexión: " + e.getMessage());
             return false;
         }
     }

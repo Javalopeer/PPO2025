@@ -43,9 +43,9 @@ public class GrupoView {
         } else {
             for (Grupo grupo : lista) {
                 System.out.println("\nID: " + grupo.getId() +
+                        "\nEstado: " + grupo.getEstado() +
                         "\nNombre: " + grupo.getNombre() +
-                        "\nDescripción: " + grupo.getDescripcion() +
-                        "\nEstado: " + grupo.getEstado());
+                        "\nDescripcion: " + grupo.getDescripcion());
             }
         }
     }
@@ -104,7 +104,7 @@ public class GrupoView {
             return;
         }
 
-        if (controller.actualizarGrupo(id, nombre, descripcion, estado)) {
+        if (controller.actualizarGrupo(id, estado, nombre, descripcion)) {
             System.out.println("✅ Grupo actualizado correctamente.");
         } else {
             System.out.println("❌ No se pudo actualizar el grupo.");
