@@ -6,9 +6,13 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-    private static final String URL = "jdbc:mysql://srv863.hstgr.io:3306/u484426513_ppoc225";
-    private static final String USER = "u484426513_ppoc225";
-    private static final String PASSWORD = "jXc7w:|7Gy";
+//    private static final String URL = "jdbc:mysql://srv863.hstgr.io:3306/u484426513_ppoc225";
+//    private static final String USER = "u484426513_ppoc225";
+//    private static final String PASSWORD = "jXc7w:|7Gy";
+
+    private static final String URL = "jdbc:mysql://localhost:3306/ppoc";
+    private static final String USER = "root";
+    private static final String PASSWORD = "1234";
 
     public static Connection obtenerConexion() {
         try {
