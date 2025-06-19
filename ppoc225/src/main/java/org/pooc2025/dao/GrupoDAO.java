@@ -11,7 +11,7 @@ public class GrupoDAO {
 
     public List<Grupo> listarTodos() {
         List<Grupo> lista = new ArrayList<>();
-        String sql = "SELECT * FROM grupo";
+        String sql = "SELECT * FROM gerardo_grupo";
 
         try (Connection con = Conexion.obtenerConexion();
              Statement stmt = con.createStatement();
@@ -35,7 +35,7 @@ public class GrupoDAO {
     }
 
     public boolean insertar(Grupo grupo) {
-        String sql = "INSERT INTO grupo (nombre, descripcion, estado) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO gerardo_grupo (nombre, descripcion, estado) VALUES (?, ?, ?)";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, grupo.getNombre());
@@ -49,7 +49,7 @@ public class GrupoDAO {
     }
 
     public boolean actualizar(Grupo grupo) {
-        String sql = "UPDATE grupo SET nombre=?, descripcion=?, estado=? WHERE id=?";
+        String sql = "UPDATE gerardo_grupo SET nombre=?, descripcion=?, estado=? WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, grupo.getNombre());
@@ -64,7 +64,7 @@ public class GrupoDAO {
     }
 
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM grupo WHERE id=?";
+        String sql = "DELETE FROM gerardo_grupo WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -76,7 +76,7 @@ public class GrupoDAO {
     }
 
     public Grupo buscarPorId(int id) {
-        String sql = "SELECT * FROM grupo WHERE id=?";
+        String sql = "SELECT * FROM gerardo_grupo WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);

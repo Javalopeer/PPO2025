@@ -10,7 +10,7 @@ import java.util.List;
 public class EstudianteDAO {
     public boolean insertar(Estudiante e) {
 
-        String sql = "INSERT INTO estudiante (nombre, identificacion, email, fecha_nacimiento, estado) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO gerardo_estudiante (nombre, identificacion, email, fecha_nacimiento, estado) VALUES (?, ?, ?, ?, ?)";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, e.getNombre());
@@ -27,7 +27,7 @@ public class EstudianteDAO {
 
     public List<Estudiante> listarTodos() {
         List<Estudiante> lista = new ArrayList<>();
-        String sql = "SELECT * FROM estudiante";
+        String sql = "SELECT * FROM gerardo_estudiante";
 
         try (Connection con = Conexion.obtenerConexion();
              Statement stmt = con.createStatement();
@@ -53,7 +53,7 @@ public class EstudianteDAO {
     }
 
     public boolean actualizar(Estudiante e) {
-        String sql = "UPDATE estudiante SET nombre=?, identificacion=?, email=?, fecha_nacimiento=?, estado=? WHERE id=?";
+        String sql = "UPDATE gerardo_estudiante SET nombre=?, identificacion=?, email=?, fecha_nacimiento=?, estado=? WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, e.getNombre());
@@ -70,7 +70,7 @@ public class EstudianteDAO {
     }
 
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM estudiante WHERE id=?";
+        String sql = "DELETE FROM gerardo_estudiante WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -82,7 +82,7 @@ public class EstudianteDAO {
     }
 
     public Estudiante buscarPorId(int id) {
-        String sql = "SELECT * FROM estudiante WHERE id=?";
+        String sql = "SELECT * FROM gerardo_estudiante WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);

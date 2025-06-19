@@ -10,7 +10,7 @@ import java.util.List;
 public class CursoDAO {
 
     public boolean insertar(Curso curso) {
-        String sql = "INSERT INTO curso (nombre, descripcion, estado) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO gerardo_curso (nombre, descripcion, estado) VALUES (?, ?, ?)";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, curso.getNombre());
@@ -25,7 +25,7 @@ public class CursoDAO {
 
     public List<Curso> listarTodos() {
         List<Curso> lista = new ArrayList<>();
-        String sql = "SELECT * FROM curso";
+        String sql = "SELECT * FROM gerardo_curso";
 
         try (Connection con = Conexion.obtenerConexion();
              Statement stmt = con.createStatement();
@@ -47,7 +47,7 @@ public class CursoDAO {
     }
 
     public boolean actualizar(Curso curso) {
-        String sql = "UPDATE curso SET nombre=?, descripcion=?, estado=? WHERE id=?";
+        String sql = "UPDATE gerardo_curso SET nombre=?, descripcion=?, estado=? WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, curso.getNombre());
@@ -62,8 +62,8 @@ public class CursoDAO {
     }
 
     public boolean eliminar(int id) {
-        String sql1 = "DELETE FROM grupo_curso WHERE curso_id=?";
-        String sql2 = "DELETE FROM curso WHERE id=?";
+        String sql1 = "DELETE FROM gerardo_grupo_curso WHERE curso_id=?";
+        String sql2 = "DELETE FROM gerardo_curso WHERE id=?";
         try (Connection con = Conexion.obtenerConexion()) {
             con.setAutoCommit(false);
 
@@ -90,7 +90,7 @@ public class CursoDAO {
     }
 
     public Curso buscarPorId(int id) {
-        String sql = "SELECT * FROM curso WHERE id=?";
+        String sql = "SELECT * FROM gerardo_curso WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);

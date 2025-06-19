@@ -10,7 +10,7 @@ import java.util.List;
 public class ProfesorDAO {
 
     public boolean insertar(Profesor p) {
-        String sql = "INSERT INTO profesor (nombre, identificacion, email, departamento, estado) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO gerardo_profesor (nombre, identificacion, email, departamento, estado) VALUES (?, ?, ?, ?, ?)";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, p.getNombre());
@@ -27,7 +27,7 @@ public class ProfesorDAO {
 
     public List<Profesor> listarTodos() {
         List<Profesor> lista = new ArrayList<>();
-        String sql = "SELECT * FROM profesor";
+        String sql = "SELECT * FROM gerardo_profesor";
 
         try (Connection con = Conexion.obtenerConexion();
              Statement stmt = con.createStatement();
@@ -51,7 +51,7 @@ public class ProfesorDAO {
     }
 
     public boolean actualizar(Profesor p) {
-        String sql = "UPDATE profesor SET nombre=?, identificacion=?, email=?, departamento=?, estado=? WHERE id=?";
+        String sql = "UPDATE gerardo_profesor SET nombre=?, identificacion=?, email=?, departamento=?, estado=? WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, p.getNombre());
@@ -68,7 +68,7 @@ public class ProfesorDAO {
     }
 
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM profesor WHERE id=?";
+        String sql = "DELETE FROM gerardo_profesor WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -80,7 +80,7 @@ public class ProfesorDAO {
     }
 
     public Profesor buscarPorId(int id) {
-        String sql = "SELECT * FROM profesor WHERE id=?";
+        String sql = "SELECT * FROM gerardo_profesor WHERE id=?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, id);

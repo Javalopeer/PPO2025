@@ -10,7 +10,7 @@ import java.util.List;
 public class GrupoCursoDAO {
 
     public boolean insertar(GrupoCurso relacion) {
-        String sql = "INSERT INTO grupo_curso (grupo_id, curso_id) VALUES (?, ?)";
+        String sql = "INSERT INTO gerardo_grupo_curso (grupo_id, curso_id) VALUES (?, ?)";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, relacion.getGrupoId());
@@ -26,9 +26,9 @@ public class GrupoCursoDAO {
         List<String> lista = new ArrayList<>();
         String sql = """
         SELECT gc.id, g.id AS grupo_id, g.nombre AS grupo, c.id AS curso_id, c.nombre AS curso
-        FROM grupo_curso gc
-        JOIN grupo g ON gc.grupo_id = g.id
-        JOIN curso c ON gc.curso_id = c.id
+        FROM gerardo_grupo_curso gc
+        JOIN gerardo_grupo g ON gc.grupo_id = g.id
+        JOIN gerardo_curso c ON gc.curso_id = c.id
     """;
         try (Connection con = Conexion.obtenerConexion();
              Statement stmt = con.createStatement();
@@ -46,7 +46,7 @@ public class GrupoCursoDAO {
 
     public List<String> listarGruposConNombres() {
         List<String> lista = new ArrayList<>();
-        String sql = "SELECT id, nombre FROM grupo";
+        String sql = "SELECT id, nombre FROM gerardo_grupo";
         try (Connection con = Conexion.obtenerConexion();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -61,7 +61,7 @@ public class GrupoCursoDAO {
 
     public List<String> listarCursosConNombres() {
         List<String> lista = new ArrayList<>();
-        String sql = "SELECT id, nombre FROM curso";
+        String sql = "SELECT id, nombre FROM gerardo_curso";
         try (Connection con = Conexion.obtenerConexion();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -74,7 +74,7 @@ public class GrupoCursoDAO {
         return lista;
     }
     public boolean yaExisteAsignacion(int grupoId, int cursoId) {
-        String sql = "SELECT COUNT(*) FROM grupo_curso WHERE grupo_id = ? AND curso_id = ?";
+        String sql = "SELECT COUNT(*) FROM gerardo_grupo_curso WHERE grupo_id = ? AND curso_id = ?";
         try (Connection con = Conexion.obtenerConexion();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, grupoId);
